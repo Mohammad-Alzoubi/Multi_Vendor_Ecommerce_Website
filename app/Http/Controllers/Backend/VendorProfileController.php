@@ -1,24 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class UserDashboardController extends Controller
+class VendorProfileController extends Controller
 {
-    public function dashboard()
-    {
-        return view('frontend.dashboard.dashboard');
-    }
 
-    public function profile()
+    public function index()
     {
         return view('frontend.dashboard.profile');
     }
-
 
     public function updateProfile(Request $request)
     {
