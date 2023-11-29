@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="{{asset('backend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('backend/assets/css/components.css')}}">
     <!-- Start GA -->
+
+    @stack('style')
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -35,7 +38,8 @@
 
         gtag('config', 'UA-94034622-3');
     </script>
-    <!-- /END GA --></head>
+    <!-- /END GA -->
+</head>
 
 <body>
 <div id="app">
@@ -89,8 +93,6 @@
 <script src="{{asset('backend/assets/js/scripts.js')}}"></script>
 <script src="{{asset('backend/assets/js/custom.js')}}"></script>
 
-@stack('scripts')
-
 <script>
     @if($errors->any())
         @foreach($errors->all() as $error)
@@ -135,6 +137,7 @@
                                     Swal.fire(
                                         'Deleted!',
                                         data.message,
+                                        'success'
                                     )
                                     window.location.reload();
                                 }else if (data.status == 'error'){
@@ -154,5 +157,8 @@
             })
         })
     </script>
+
+@stack('scripts')
+
 </body>
 </html>
