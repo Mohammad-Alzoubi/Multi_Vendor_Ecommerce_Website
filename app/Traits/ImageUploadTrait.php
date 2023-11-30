@@ -15,6 +15,7 @@ trait ImageUploadTrait {
             $image = $request->{$inputName};
             $ext   = $image->getClientOriginalExtension();
             $imageName = 'media_'.uniqid().'.'.$ext;
+            $path = $path.'/'.$inputName;
 
             $image->move(public_path($path), $imageName);
 
@@ -55,6 +56,7 @@ trait ImageUploadTrait {
             $image = $request->{$inputName};
             $ext = $image->getClientOriginalExtension();
             $imageName = 'media_'.uniqid().'.'.$ext;
+            $path = $path.'/'.$inputName;
 
             $image->move(public_path($path), $imageName);
 
