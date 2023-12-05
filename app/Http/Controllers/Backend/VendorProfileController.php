@@ -12,7 +12,7 @@ class VendorProfileController extends Controller
 
     public function index()
     {
-        return view('frontend.dashboard.profile');
+        return view('vendor.dashboard.profile');
     }
 
     public function updateProfile(Request $request)

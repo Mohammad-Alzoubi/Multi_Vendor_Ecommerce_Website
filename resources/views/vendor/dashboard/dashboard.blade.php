@@ -1,9 +1,9 @@
-@extends('vendor.dashboard.layouts.master')
+@extends('vendor.layouts.master')
 
 @section('content')
     <section id="wsus__dashboard">
         <div class="container-fluid">
-        @include('vendor.dashboard.layouts.sidebar')
+        @include('vendor.layouts.sidebar')
 
         <!-- dashboard content start -->
             <div class="row">

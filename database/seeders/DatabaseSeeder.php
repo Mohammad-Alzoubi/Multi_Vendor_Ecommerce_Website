@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCategorySeeder::class);
         $this->call(ChildCategorySeeder::class);
         $this->call(AdminProfileSeeder::class);
+        $this->call(VendorShopProfileSeeder::class);
     }
 }
