@@ -6,6 +6,7 @@ use App\DataTables\ProductVariantDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductVariantItem;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Services\DataTable;
 
@@ -94,6 +95,9 @@ class ProductVariantController extends Controller
     public function destroy($id)
     {
         $variant = ProductVariant::findOrFail($id);
+        if(ProductVariantItem::where('product_variant_id', $variant->id)->count() > 0){
+            return response(['status' => 'error', 'message' => 'This variant contain variant items in it delete the variant items first for delete this variant!']);
+        }
         $variant->delete();
         return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
     }

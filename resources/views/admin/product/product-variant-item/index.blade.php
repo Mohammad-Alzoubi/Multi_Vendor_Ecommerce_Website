@@ -4,24 +4,21 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>Product Variant</h1>
+            <h1>Product Variant Items</h1>
         </div>
-
         <div class="mb-3">
-            <a href="{{route('admin.products.index')}}" class="btn btn-primary">back</a>
+            <a href="{{route('admin.products-variant.index', ['product' => $product->id])}}" class="btn btn-primary">Back</a>
         </div>
-
         <div class="section-body">
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Product : {{$product->name}}</h4>
+                            <h4>Variant: {{$variant->name}} </h4>
                             <div class="card-header-action">
-                                <a href="{{route('admin.products-variant.create', ['product' => $product->id])}}"
-                                   class="btn btn-primary"><i
-                                        class="fas fa-plus"></i> Create New</a>
+                                <a href="{{route('admin.products-variant-item.create', ['productId' => $product->id, 'variantId' => $variant->id])}}"
+                                   class="btn btn-primary"><i class="fas fa-plus"></i> Create New</a>
                             </div>
                         </div>
                         <div class="card-body">
@@ -47,7 +44,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{route('admin.products-variant.change-status')}}",
+                    url: "{{route('admin.products-variant-item.changes-status')}}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
