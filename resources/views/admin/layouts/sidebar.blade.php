@@ -30,22 +30,34 @@
             <!-- Product -->
             <li class="dropdown {{setActive([
                 'admin.brand.*',
+                'admin.products.*',
+                'admin.products-image-gallery.*',
+                'admin.products-variant.*',
+                'admin.products-variant-item.*',
+                'admin.seller-products.*',
+                'admin.seller-pending-products.*'
             ])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Product</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{setActive(['admin.brand.*'])}}"><a class="nav-link" href="{{route('admin.brand.index')}}">Brand</a></li>
+                    <li class="{{setActive([
+                                            'admin.products.*',
+                                            'admin.products-image-gallery.*',
+                                            'admin.products-variant.*',
+                                            'admin.products-variant-item.*',
+                                            ])}}"><a class="nav-link" href="{{route('admin.products.index')}}">Product</a></li>
+                    <li class="{{setActive(['admin.seller-products.*'])}}"><a class="nav-link" href="{{route('admin.seller-products.index')}}">Sellers product</a></li>
+                    <li class="{{setActive(['admin.seller-pending-products.*'])}}"><a class="nav-link" href="{{route('admin.seller-pending-products.index')}}">Seller Pending Products</a></li>
                 </ul>
             </li>
 
             <!-- Ecommerce -->
             <li class="dropdown {{setActive([
                 'admin.vendor-profile.*',
-                'admin.products.*'
             ])}}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Manage Ecommerce</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{setActive(['admin.vendor-profile.*'])}}"><a class="nav-link" href="{{route('admin.vendor-profile.index')}}">Vendor Profile</a></li>
-                    <li class="{{setActive(['admin.products.*'])}}"><a class="nav-link" href="{{route('admin.products.index')}}">Product</a></li>
                 </ul>
             </li>
 
