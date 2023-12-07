@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\ProductVariant;
+use App\Models\VendorProductVariant;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductVariantDataTable extends DataTable
+class VendorProductVariantDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,23 +25,20 @@ class ProductVariantDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query){
-                $variantItems = "<a href='".route('admin.products-variant-item.index', ['productId' => request()->product, 'variantId' => $query->id])."' class='btn btn-info mr-2'><i class='far fa-edit'></i> Variant Items</a>";
+                $veriantItems = "<a href='".route('vendor.products-variant-item.index', ['productId' => request()->product, 'variantId' => $query->id])."' class='btn btn-info btn-space-right'><i class='far fa-edit'></i> Variant Items</a>";
 
-                $editBtn = "<a href='".route('admin.products-variant.edit', $query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='".route('admin.products-variant.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
-                return $variantItems.$editBtn.$deleteBtn;
+                $editBtn = "<a href='".route('vendor.products-variant.edit', $query->id)."' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='".route('vendor.products-variant.destroy', $query->id)."' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                return $veriantItems.$editBtn.$deleteBtn;
             })
             ->addColumn('status', function($query){
                 if($query->status == 1){
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" checked name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status" >
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
+                    $button = '<div class="form-check form-switch">
+                <input checked class="form-check-input change-status" type="checkbox" id="flexSwitchCheckDefault" data-id="'.$query->id.'"></div>';
                 }else {
-                    $button = '<label class="custom-switch mt-2">
-                        <input type="checkbox" name="custom-switch-checkbox" data-id="'.$query->id.'" class="custom-switch-input change-status">
-                        <span class="custom-switch-indicator"></span>
-                    </label>';
+                    $button = '<div class="form-check form-switch">
+                <input class="form-check-input change-status" type="checkbox" id="flexSwitchCheckDefault" data-id="'.$query->id.'"></div>';
                 }
                 return $button;
             })
@@ -48,11 +46,10 @@ class ProductVariantDataTable extends DataTable
             ->setRowId('id');
     }
 
+
+
     /**
      * Get query source of dataTable.
-     *
-     * @param \App\Models\ProductVariant $model
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(ProductVariant $model): QueryBuilder
     {
@@ -67,11 +64,11 @@ class ProductVariantDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productvariant-table')
+                    ->setTableId('vendorproductvariant-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
-                    ->orderBy(0)
+                    ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -109,6 +106,6 @@ class ProductVariantDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ProductVariant_' . date('YmdHis');
+        return 'VendorProductVariant_' . date('YmdHis');
     }
 }
