@@ -62,6 +62,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->thumb_image = $imagePath;
+        $product->vendor_id   = Auth::user()->vendor->id;
         $this->saveProduct($request, $product);
 
         toastr('Created Successfully!', 'success');
