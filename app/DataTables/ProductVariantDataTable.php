@@ -50,9 +50,6 @@ class ProductVariantDataTable extends DataTable
 
     /**
      * Get query source of dataTable.
-     *
-     * @param \App\Models\ProductVariant $model
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(ProductVariant $model): QueryBuilder
     {
