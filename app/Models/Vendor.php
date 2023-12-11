@@ -10,4 +10,9 @@ class Vendor extends Model
     use HasFactory;
 
     protected $fillable = ['banner', 'shop_name', 'phone', 'email', 'address', 'description', 'fb_link', 'tw_link', 'insta_link', 'user_id', 'status'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

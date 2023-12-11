@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Frontend\FlashSaleController;
+use App\Http\Controllers\Frontend\FrontendProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserDashboardController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +35,8 @@ require __DIR__.'/auth.php';
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 
 Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale');
+
+Route::get('product-detail/{slug}', [FrontendProductController::class, 'showProduct'])->name('product-detail');
 
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function(){
