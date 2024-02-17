@@ -1,5 +1,7 @@
 <?php
 
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 /** Set Sidebar item active */
 
@@ -43,4 +45,13 @@ function productType($type): string
         'best_product'     => 'Best',
         default => '',
     };
+}
+
+/** get total cart amount */
+function getCartTotal(){
+    $total = 0;
+    foreach (Cart::content() as $product){
+        $total += ($product->price + $product->options->variants_total) * $product->qty;
+    }
+    return $total;
 }

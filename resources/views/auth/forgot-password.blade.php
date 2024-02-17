@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('title')
+{{ $settings->site_name }} || Forgot Password
+@stop
 @section('content')
     <section id="wsus__login_register">
         <div class="container">

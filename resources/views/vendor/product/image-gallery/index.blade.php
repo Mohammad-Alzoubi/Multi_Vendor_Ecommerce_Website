@@ -1,8 +1,8 @@
 @extends('vendor.layouts.master')
 
 @section('title')
-     || Image Gallery
-@endsection
+{{ $settings->site_name }} ||  Image Gallery
+@stop
 
 @section('content')
     <!--=============================

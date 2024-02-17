@@ -1,8 +1,8 @@
 @extends('vendor.layouts.master')
 
 @section('title')
-    index || Product
-@endsection
+{{ $settings->site_name }} ||  Products
+@stop
 
 @section('content')
     <!-- DASHBOARD START -->

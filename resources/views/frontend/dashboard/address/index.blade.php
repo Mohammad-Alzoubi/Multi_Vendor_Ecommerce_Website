@@ -1,5 +1,7 @@
 @extends('frontend.dashboard.layouts.master')
-
+@section('title')
+{{ $settings->site_name }} || All Address
+@stop
 @section('content')
     <section id="wsus__dashboard">
         <div class="container-fluid">

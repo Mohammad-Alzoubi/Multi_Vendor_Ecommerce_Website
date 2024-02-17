@@ -1,8 +1,8 @@
 @extends('vendor.layouts.master')
 
 @section('title')
-     || Product Variant Item
-@endsection
+{{ $settings->site_name }} ||  Update Variant Item
+@stop
 
 @section('content')
 
@@ -15,7 +15,7 @@
                     {{-- <a href="{{route('vendor.products-variant-item.index',
                     ['productId' => $product->id, 'variantId' => $variant->id])}}" class="btn btn-warning mb-4"><i class="fas fa-long-arrow-left"></i> Back</a> --}}
                     <div class="dashboard_content mt-2 mt-md-0">
-                        <h3><i class="far fa-user"></i> Create Variant Item</h3>
+                        <h3><i class="far fa-user"></i> Update Variant Item</h3>
                         <div class="wsus__dashboard_profile">
                             <div class="wsus__dash_pro_area">
                                 <form action="{{route('vendor.products-variant-item.update', $variantItem->id)}}"

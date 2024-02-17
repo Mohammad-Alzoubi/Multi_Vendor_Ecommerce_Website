@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('title')
+{{ $settings->site_name }} || {{ $product->name }}
+@stop
 
 @section('content')
 
@@ -193,7 +195,13 @@
                     <div class="col-xl-5 col-md-7 col-lg-7">
                         <div class="wsus__pro_details_text">
                             <a class="title" href="javascript:;">{{$product->name}}</a>
-                            <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
+
+                            @if($product->qty > 0)
+                                <p class="wsus__stock_area"><span class="in_stock">in stock</span> ({{$product->qty}} item)</p>
+                            @elseif($product->qty === 0)
+                                <p class="wsus__stock_area"><span class="in_stock">stock out</span> ({{$product->qty}} item)</p>
+                            @endif
+
                             @if(checkDiscount($product))
                                 <h4>{{$settings->currency_icon}}{{$product->offer_price}} <del>{{$settings->currency_icon}}{{$product->price}}</del></h4>
                             @else
@@ -210,36 +218,48 @@
                             <p class="description">
                                 {!! $product->short_description !!}
                             </p>
-                            <!-- Start variant -->
-                            <div class="wsus__selectbox">
-                                <div class="row">
-                                    @foreach($product->variants as $variant)
-                                    <div class="col-xl-6 col-sm-6">
-                                        <h5 class="mb-2">{{$variant->name}}:</h5>
-                                        <select class="select_2" name="state">
-                                            @foreach($variant->productVariantItems as $variantItem)
-                                            <option {{$variantItem->is_default ? 'selected':''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
-                                            @endforeach
-                                        </select>
+
+                            <form class="shopping-cart-form">
+                                <!-- Start variant -->
+                                <div class="wsus__selectbox">
+                                    <div class="row">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        @foreach($product->variants as $variant)
+                                            @if($variant->status != 0)
+                                                <div class="col-xl-6 col-sm-6">
+                                                    <h5 class="mb-2">{{$variant->name}}:</h5>
+                                                    <select class="select_2" name="variants_items[]">
+                                                        @foreach($variant->productVariantItems as $variantItem)
+                                                            @if($variantItem->status != 0)
+                                                            <option value="{{ $variantItem->id }}" {{$variantItem->is_default ? 'selected':''}}>{{$variantItem->name}} (${{$variantItem->price}})</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
-                            </div>
-                            <!-- END variant -->
+                                <!-- END variant -->
 
-                            <div class="wsus__quentity">
-                                <h5>quantity :</h5>
-                                <form class="select_number">
-                                    <input class="number_area" type="text" min="1" max="100" value="1" />
-                                </form>
-                            </div>
+                                <!-- Start quantity -->
+                                <div class="wsus__quentity">
+                                    <h5>quantity :</h5>
+                                    <div class="select_number">
+                                        <input class="number_area" name="qty" type="text" min="1" max="100" value="1" />
+                                    </div>
+                                </div>
 
-                            <ul class="wsus__button_area">
-                                <li><a class="add_cart" href="#">add to cart</a></li>
-                                <li><a class="buy_now" href="#">buy now</a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-random"></i></a></li>
-                            </ul>
+                                <!-- Start add to cart & buy now-->
+                                <ul class="wsus__button_area">
+                                    <li><button type="submit" class="add_cart">add to cart</button></li>
+                                    <li><a class="buy_now" href="#">buy now</a></li>
+                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                </ul>
+                            </form>
+
+
                             <p class="brand_model"><span>brand :</span> {{$product->brand->name}}</p>
                             <div class="wsus__pro_det_share">
                                 <h5>share :</h5>
@@ -548,6 +568,7 @@
     </section>
     <!-- PRODUCT DETAILS END -->
 
+{{--
     <!-- RELATED PRODUCT START -->
     <section id="wsus__flash_sell">
         <div class="container">
@@ -712,7 +733,7 @@
         </div>
     </section>
     <!-- RELATED PRODUCT END -->
-
+--}}
 
 @stop
 
