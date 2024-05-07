@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <!-- datatable -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
@@ -41,7 +43,7 @@
 <div class="wsus__dashboard_menu">
     <div class="wsusd__dashboard_user">
         <img src="{{asset('frontend/images/dashboard_user.jpg')}}" alt="img" class="img-fluid">
-        <p>anik roy</p>
+        <p>{{auth()->user()->name}}</p>
     </div>
 </div>
 <!--=============================
@@ -108,6 +110,9 @@
 
 <!--main/custom js-->
 <script src="{{asset('frontend/js/main.js')}}"></script>
+
+<!-- Datatable -->
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <!-- Toastr CSS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -178,6 +183,7 @@
         })
     })
 </script>
+@stack('scripts')
 
 </body>
 
